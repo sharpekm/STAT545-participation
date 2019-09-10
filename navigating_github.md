@@ -1,8 +1,10 @@
-Here is the URL for the STAT545 homepage repo:
+# Helpful Links 
 
-https://github.com/STAT545-UBC/STAT545-home
+Here is the URL for the __STAT545 homepage__ repo:
 
-Here is its corresponding organization account:
+[STAT 545 Home](https://github.com/STAT545-UBC/STAT545-home)
+
+Here is its corresponding _organization_ account:
 
 https://github.com/STAT545-UBC
 
@@ -18,3 +20,4 @@ Here is the link to assignmnt #1 from the 2018 version of the course:
 
 https://github.com/STAT545-UBC/Classroom/commit/e2a02abaa8b625921a5d2f2963c20aaebb59f1fa
 Assignment #1 was due September 18, 2018 at 23:59.
+
