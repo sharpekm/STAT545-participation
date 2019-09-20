@@ -138,7 +138,7 @@ FILL_THIS_IN
 ```
 
 
-## Exercise 3: Fix the plots (Together)
+## Exercise 3: Fix the plots (together)
 
 ### 3(a)
 
