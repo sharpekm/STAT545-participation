@@ -2,6 +2,9 @@
 html_document:
   keep_md: yes
   theme: paper
+output:
+  html_document:
+    df_print: paged
 title: 'cm006: `dplyr` Exercise'
 ---
 <!---The following chunk allows errors when knitting--->

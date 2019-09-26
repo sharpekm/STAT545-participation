@@ -1,0 +1,134 @@
+---
+title: "cm007 Exercises: Practice with `dplyr`"
+output: 
+  html_document:
+    keep_md: true
+    theme: paper
+---
+
+
+<!---The following chunk allows errors when knitting--->
+
+```{r allow errors, echo = FALSE}
+knitr::opts_chunk$set(error = TRUE, warning = FALSE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(gapminder))
+suppressPackageStartupMessages(library(tsibble))
+```
+
+
+# Following along with lecture notes
+
+##### summarize is almost never used on it's own, usually used in tandem with the group_by function.
+
+##### Can't group_by with a dataframe, unique to tibbles
+Can group by new variables, kind of like mutate
+
+1. (a) What's the minimum life expectancy for each continent and each year? (b) Add the corresponding country to the tibble, too. (c) Arrange by min life expectancy.
+
+```{r}
+gapminder %>% 
+  group_by(smallLifeExp = lifeExp < 60) %>% 
+  select(country, year, smallLifeExp)
+```
+Want to compute the mean and standard deviation for each year for every continent?
+```{r}
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarize(mu    = mean(lifeExp),
+            sigma = sd(lifeExp))
+```
+
+
+
+dplyr has a bunch of convenience functions that help us write code more eloquently. We could use group_by() and summarize() with length() to find the number of entries each country has:
+```{r}
+gapminder %>% 
+  group_by(country) %>% 
+  transmute(n = length(country))
+```
+
+
+Or, we can use dplyr::n() to count the number of rows in each group:
+```{r}
+gapminder %>% 
+  group_by(country) %>% 
+  summarize(n = n())
+```
+
+Or better yet, just use dplyr::count():
+```{r}
+gapminder %>% 
+  count(country)
+```
+
+Want to get the increase in GDP per capita for each country?
+# Arranged just to make sure years are in order...
+
+```{r}
+gap_inc <- gapminder %>% 
+  arrange(year) %>%  
+  group_by(country) %>%
+  mutate(gdpPercap_inc = gdpPercap - lag(gdpPercap))
+DT::datatable(gap_inc)
+```
+
+
+Drop the NAs with another convenience function, this time supplied by the tidyr package (another tidyverse package that we’ll see soon):
+```{r}
+gap_inc %>% 
+  tidyr::drop_na()
+```
+
+
+
+# Class excercises 
+# This worksheet contains exercises aimed for practice with `dplyr`. 
+
+```{r}
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarize(min_life = min(lifeExp),
+            country = country[lifeExp == min_life]) %>% 
+  arrange(min_life)
+```
+
+2. Calculate the growth in population since the first year on record _for each country_ by rearranging the following lines, and filling in the `FILL_THIS_IN`. Here's another convenience function for you: `dplyr::first()`. 
+
+
+```{r}
+gapminder %>%
+  group_by(country) %>%
+  arrange(year) %>% 
+  mutate(rel_growth = pop - first(pop)) %>% 
+DT::datatable() 
+```
+
+
+3. *Determine the country that experienced the sharpest 5-year drop in life expectancy*, in each continent, sorted by the drop, by rearranging the following lines of code. Ensure there are no `NA`'s. Instead of using `lag()`, use the convenience function provided by the `tsibble` package, `tsibble::difference()`:
+
+```
+
+ 
+ 
+
+```
+
+```{r}
+gapminder %>%
+  group_by(country) %>%
+  arrange(year) %>% 
+  mutate(inc_life_exp = difference(lifeExp)) %>% 
+  drop_na() %>% 
+  ungroup() %>%  ## because actually looking at continent but first phase was calc lifeExp in each country
+  group_by(continent) %>%
+  filter(inc_life_exp == min(inc_life_exp)) %>%  
+  arrange(inc_life_exp) %>%
+  knitr::kable()
+  
+```
+
+
