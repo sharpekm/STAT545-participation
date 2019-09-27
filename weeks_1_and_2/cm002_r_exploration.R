@@ -81,6 +81,7 @@ mtcars
 
 ##  prints to screen the structure of the dataframe
 str(mtcars)
+
 ##  extract a vector of names
 names(mtcars)
 
@@ -88,4 +89,14 @@ names(mtcars)
 mtcars$mpg
 mtcars$cyl
 mean(mtcars$mpg)  ##  extracting mean of mpg 
+
+##  continue exploring R functions w/ mtcars
+head(mtcars)
+tail(mtcars)
+nrow(mtcars)   ## # of rows
+ncol(mtcars)   ##  # of cols
+summary(mtcars)
+row.names(mtcars)
+##  first column name = mpg; wt is column 6
+names(mtcars)   
 
