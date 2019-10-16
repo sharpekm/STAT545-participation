@@ -216,7 +216,7 @@ gapminder %>%
   ggplot() +
   geom_bar(aes(fct_relevel(continent,"Oceania", "Europe"))) +
   coord_flip()+
-  theme_bw() 
+  theme_bw()  
 ```
 More details on reordering factor levels by hand can be found [here] https://forcats.tidyverse.org/reference/fct_relevel.html
 

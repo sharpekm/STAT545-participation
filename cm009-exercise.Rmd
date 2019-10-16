@@ -22,7 +22,7 @@ knitr::opts_chunk$set(error = TRUE, warning = FALSE)
 
 ## Exercise 1: Univariate Pivoting
 
-Consider the Lord of the Rings data:
+Consider the Lord of the Rings data: 
 
 ```{r}
 lotr

@@ -7,7 +7,7 @@ output:
     theme: paper
 ---
 
-## Requirements
+## Requirements 
 
 You will need Joey's `singer` R package for this exercise. And to install that, you'll need to install `devtools`. Running this code in your console should do the trick:
 

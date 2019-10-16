@@ -1,7 +1,7 @@
 library(tidyverse)
 library(gapminder)
 
-gapminder 
+gapminder  
 write_csv(gapminder, './gapinder.csv')
 
 view(ggapminder)
