@@ -171,6 +171,15 @@ gapminder %>%
   geom_boxplot()
 ```
 
+Want to switch x and y from the bar plot.
+```{r}
+gapminder %>% 
+  filter(continent == "Americas") %>% 
+  ggplot(aes(lifeExp, country)) +
+  ggridges::geom_density_ridges()
+```
+
+
 ## Exercise 6: Bar plot madness
 
 ### 6(a) Colour and stacking madness
